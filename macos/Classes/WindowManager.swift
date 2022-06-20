@@ -37,6 +37,11 @@ extension NSRect {
 
 public class WindowManager: NSObject, NSWindowDelegate {
     public var onEvent:((String) -> Void)?
+
+    public func window(_ window: NSWindow, willUseFullScreenPresentationOptions proposedOptions: NSApplication.PresentationOptions = []) -> NSApplication.PresentationOptions {
+        // Hides the toolbar when in fullscreen mode
+        return [.autoHideToolbar, .autoHideMenuBar, .fullScreen]
+    }
     
     private var _mainWindow: NSWindow?
     public var mainWindow: NSWindow {
